@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>100 Projects HTML, CSS, Javascript</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      background: #f0f0f0;
+    }
+
+    main {
+      text-align: center;
+    }
+
+    .logos {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+    }
+
+    .project-list {
+      list-style: none;
+      margin: 2rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .project-list li a {
+      text-decoration: none;
+      color: #333;
+      border: 2px solid #333;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      width: 300px;
+      display: block;
+      transition:
+        background-color 0.3s,
+        color 0.3s;
+    }
+  </style>
+  <body>
+    <main>
+      <div class="logos">
+        <img src="./html.svg" alt="HTML logo" />
+        <img src="./css.svg" alt="CSS logo" />
+        <img src="./javascript.svg" alt="Javascript logo" />
+      </div>
+      <h1>100 Projects</h1>
+      <ul class="project-list">
+        <li>
+          <a href="/price-range-slider/index.html">
+            <h2>Price Range Slider</h2>
+            <p>Beginner</p>
+          </a>
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>
