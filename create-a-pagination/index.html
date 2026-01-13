@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagination Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 3rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .pagination {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .pagination a {
+        color: #007bff;
+        padding: 8px 16px;
+        text-decoration: none;
+        border: 1px solid #007bff;
+        margin: 0 5px;
+        border-radius: 4px;
+      }
+
+      .pagination a:hover {
+        background-color: #007bff;
+        color: white;
+      }
+
+      .pagination .active {
+        background-color: #007bff;
+        color: white;
+      }
+
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .card {
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 20px 0px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        text-align: center;
+      }
+
+      .card img {
+        max-width: 300px;
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 10px;
+      }
+
+      h3 {
+        margin-top: 10px;
+        font-size: 18px;
+        text-transform: capitalize;
+      }
+
+      h1 {
+        text-align: center;
+        margin: 2rem;
+      }
+
+      p {
+        font-size: 14px;
+      }
+
+      #page-numbers {
+        margin-top: 20px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="data-container">
+      <h1>Pagination in HTML CSS & JavaScript</h1>
+      <div class="card-container">
+        <div class="card">
+          <img
+            src="https://www.btech.id/media/images/Page/2022/07/04/Full_Stack_Engineer"
+            alt="Image 1"
+          />
+          <h3>mern full stack development classroom</h3>
+          <p>This is the content of Card 1.</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://blog.sinarteknologiindonesia.co.id/wp-content/uploads/2025/10/tooldevops_esempio.png"
+            alt="Image 2"
+          />
+          <h3>Dev Ops Live</h3>
+          <p>This is the content of Card 2.</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://static.pw.live/5eb393ee95fab7468a79d189/GLOBAL_CMS_BLOGS/2dcc78d5-4c58-4d7c-a6d4-585da78e4874.jpg"
+            alt="Image 3"
+          />
+          <h3>Gate Date science and artificial intelligence</h3>
+          <p>This is the content of Card 3.</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://www.techasoft.com/blog/2020/05/1590568807.jpg"
+            alt="Image 5"
+          />
+          <h3>complete test series product companies</h3>
+          <p>This is the content of Card 5.</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://miro.medium.com/v2/resize:fit:1400/0*UIiWfg8cXRGdGVJ0"
+            alt="Image 6"
+          />
+          <h3>dsa to development coding guide</h3>
+          <p>This is the content of Card 6.</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://akademikit.com/wp-content/uploads/2025/07/Akademik-IT-Live-class-management-in-Uganda.png"
+            alt="Image 7"
+          />
+          <h3>classes live</h3>
+          <p>This is the content of Card 7.</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://www.bluetreeeducation.com/wp-content/uploads/2023/05/Website-Image-1000-x-500-px-7.jpg"
+            alt="Image 8"
+          />
+          <h3>dsa interview preparation classroom</h3>
+          <p>This is the content of Card 8.</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv0fU3-FmuuLBNFAi3yVHWj6u7kli3rYBF2w&s"
+            alt="Image 9"
+          />
+          <h3>complete interview preparation</h3>
+          <p>This is the content of Card 9.</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2019/10/TreeStructure-Data-Structures-in-Python-Edureka1.png"
+            alt="Image 10"
+          />
+          <h3>Data Structures With Python</h3>
+          <p>This is the content of Card 10.</p>
+        </div>
+        <!-- Add more cards as needed -->
+      </div>
+    </div>
+
+    <div class="pagination" id="pagination">
+      <a href="#" id="prev">Previous</a>
+      <a href="#" class="page-link" data-page="1">1</a>
+      <a href="#" class="page-link" data-page="2">2</a>
+      <a href="#" class="page-link" data-page="3">3</a>
+      <a href="#" id="next">Next</a>
+      <p id="page-numbers"></p>
+    </div>
+
+    <script>
+      const cardsPerPage = 4; // Number of cards to show per page
+      const dataContainer = document.getElementById("data-container");
+      const pagination = document.getElementById("pagination");
+      const prevButton = document.getElementById("prev");
+      const nextButton = document.getElementById("next");
+      const pageNumbers = document.getElementById("page-numbers");
+      const pageLinks = document.querySelectorAll(".page-link");
+
+      const cards = Array.from(dataContainer.getElementsByClassName("card"));
+
+      const totalPages = Math.ceil(cards.length / cardsPerPage);
+      let currentPage = 1;
+
+      // Function to display cards for a specific page
+      function displayPage(page) {
+        const startIndex = (page - 1) * cardsPerPage;
+        const endIndex = startIndex + cardsPerPage;
+        cards.forEach((card, index) => {
+          if (index >= startIndex && index < endIndex) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+      function updatePagination() {
+        pageNumbers.textContent = `Page ${currentPage} of ${totalPages}`;
+        prevButton.disabled = currentPage === 1;
+        nextButton.disabled = currentPage === totalPages;
+        pageLinks.forEach((link) => {
+          const page = parseInt(link.getAttribute("data-page"));
+          link.classList.toggle("active", page === currentPage);
+        });
+      }
+      prevButton.addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage--;
+          displayPage(currentPage);
+          updatePagination();
+        }
+      });
+      nextButton.addEventListener("click", () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          displayPage(currentPage);
+          updatePagination();
+        }
+      });
+      pageLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const page = parseInt(link.getAttribute("data-page"));
+          if (page !== currentPage) {
+            currentPage = page;
+            displayPage(currentPage);
+            updatePagination();
+          }
+        });
+      });
+      displayPage(currentPage);
+      updatePagination();
+    </script>
+  </body>
+</html>
